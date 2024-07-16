@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmation de la Commande</title>
+</head>
+<body>
+    <h1>Confirmation de la Commande</h1>
+    <div id="orderDetails">
+        <p>Commande ID: <%= order.id %></p>
+        <ul>
+            <% order.items.forEach(item => { %>
+                <li><%= item.category %> : <%= item.item %></li>
+            <% }) %>
+        </ul>
+        <p>Total: <%= order.total %> €</p>
+    </div>
+</body>
+</html>

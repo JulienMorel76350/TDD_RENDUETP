@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Révision de la Commande</title>
+</head>
+<body>
+    <h1>Révision de la Commande</h1>
+    <div id="orderSummary">
+        <ul>
+            <% products.forEach(product => { %>
+                <li><%= product.category %> : <%= product.item %></li>
+            <% }) %>
+        </ul>
+    </div>
+    <form action="/confirmOrder" method="post">
+        <input type="submit" value="Confirmer la Commande">
+    </form>
+</body>
+</html>
