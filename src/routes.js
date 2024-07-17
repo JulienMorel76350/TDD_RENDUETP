@@ -1,17 +1,28 @@
 const express = require("express");
+const path = require("path");
 const router = express.Router();
 const memberController = require("./controllers/memberController");
 const orderController = require("./controllers/orderController");
 
-// Route pour la racine
+// API routes
+router.post("/api/members", memberController.registerMember);
+router.post("/api/orders", orderController.createOrder);
+
+// Serve HTML pages
 router.get("/", (req, res) => {
-  res.redirect("/memberRegistration.html");
+  res.sendFile(path.join(__dirname, "views", "memberRegistration.html"));
 });
 
-router.post("/register", memberController.register);
-router.post("/selectProducts", orderController.selectProducts);
-router.get("/orderReview.html", orderController.reviewOrder);
-router.post("/confirmOrder", orderController.confirmOrder);
-router.get("/orderConfirmation.html", orderController.orderConfirmation);
+router.get("/productSelection", (req, res) => {
+  res.sendFile(path.join(__dirname, "views", "productSelection.html"));
+});
+
+router.get("/orderReview", (req, res) => {
+  res.sendFile(path.join(__dirname, "views", "orderReview.html"));
+});
+
+router.get("/orderConfirmation", (req, res) => {
+  res.sendFile(path.join(__dirname, "views", "orderConfirmation.html"));
+});
 
 module.exports = router;

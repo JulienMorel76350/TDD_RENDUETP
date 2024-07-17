@@ -1,20 +1,17 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Révision de la Commande</title>
+  <meta charset="UTF-8">
+  <title>Order Review</title>
 </head>
 <body>
-    <h1>Révision de la Commande</h1>
-    <div id="orderSummary">
-        <ul>
-            <% products.forEach(product => { %>
-                <li><%= product.category %> : <%= product.item %></li>
-            <% }) %>
-        </ul>
-    </div>
-    <form action="/confirmOrder" method="post">
-        <input type="submit" value="Confirmer la Commande">
-    </form>
+  <h1>Review Your Order</h1>
+  <div id="orderSummary">
+    <!-- Détails de la commande ici -->
+  </div>
+  <form action="/confirmOrder" method="post">
+    <input type="hidden" name="memberId" value="MEMBER_ID_PLACEHOLDER">
+    <button type="submit">Confirm Order</button>
+  </form>
 </body>
 </html>

@@ -1,27 +1,33 @@
 const express = require("express");
-const session = require("express-session");
-const path = require("path");
-const app = express();
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 const routes = require("./routes");
 
-app.use(
-  session({
-    secret: "secret-key",
-    resave: false,
-    saveUninitialized: true,
-  })
-);
+const app = express();
 
-app.use(express.urlencoded({ extended: true }));
+// Middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-// Configurer le dossier public pour les fichiers statiques
-app.use(express.static(path.join(__dirname, "views")));
+// Connect to MongoDB Atlas
+mongoose
+  .connect(
+    "mongodb+srv://admin:admin@cluster0.zgtmr0w.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+  )
+  .then(() => console.log("Connected to MongoDB Atlas"))
+  .catch((err) => console.error("Failed to connect to MongoDB Atlas", err));
 
-// Utiliser les routes définies
-app.use(routes);
+// Routes
+app.use("/", routes);
 
-app.listen(3000, () => {
-  console.log("Server is running on http://localhost:3000");
+// Start server
+const PORT = 3001;
+const server = app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
 
-module.exports = app;
+module.exports = server;

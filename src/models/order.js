@@ -1,18 +1,17 @@
-class Order {
-  constructor(memberId, items) {
-    this.id = Order.generateId();
-    this.memberId = memberId;
-    this.items = items;
-    this.total = this.calculateTotal();
-  }
+const mongoose = require("mongoose");
 
-  calculateTotal() {
-    return this.items.reduce((total, item) => total + item.price, 0);
-  }
+const orderSchema = new mongoose.Schema({
+  items: [
+    {
+      category: { type: String, required: true },
+      item: { type: String, required: true },
+      price: { type: Number, required: true },
+    },
+  ],
+  total: { type: Number, required: true },
+  date: { type: Date, default: Date.now },
+});
 
-  static generateId() {
-    return Math.floor(Math.random() * 10000);
-  }
-}
+const Order = mongoose.model("Order", orderSchema);
 
 module.exports = Order;
