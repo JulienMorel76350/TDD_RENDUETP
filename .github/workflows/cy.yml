@@ -14,7 +14,7 @@ jobs:
       matrix:
         node: ["20.x"]
         os: [ubuntu-latest]
-        dir: ["salle-de-sport", "tp-6-jour-1"]
+        dir: ["TDD_RENDUE"]
 
     steps:
       - name: Use Github Actions Checkout
